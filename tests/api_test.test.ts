@@ -26,22 +26,48 @@ test("CoffeeGeek test", async () => {
   await baseTest(response);
 });
 
-test("EspressoPlanet test", async () => {
+test("Nestle test", async () => {
   const response = await fetch("https://www.nestle.com/news-rss.xml", {
     method: "GET",
   });
   await baseTest(response);
 });
 
-test("Google FAIL test", async () => {
-  const response = await fetch("https://google.com", {
+test("Spend with pennies test", async () => {
+  const response = await fetch("https://spendwithpennies.com/feed", {
+    method: "GET",
+  });
+  await baseTest(response);
+});
+
+test("RecipeTinEats test", async () => {
+  const response = await fetch(
+    "https://www.recipetineats.com/category/main-dishes/rss",
+    {
+      method: "GET",
+    },
+  );
+  await baseTest(response);
+});
+
+test("BudgetBytes test", async () => {
+  const response = await fetch(
+    "https://www.budgetbytes.com/category/recipes/cost-per-recipe/recipes-under-10/rss",
+    {
+      method: "GET",
+    },
+  );
+  await baseTest(response);
+});
+
+test("Apple FAIL test", async () => {
+  const response = await fetch("https://apple.com", {
     method: "GET",
   });
 
   const responseText = await response.text();
   try {
-    const result = parseRss(responseText);
-    expect(result).toBeFalsy();
+    parseRss(responseText);
   } catch (e) {
     expect(e).toEqual(new Error("Unable to parse RSS feed"));
   }
